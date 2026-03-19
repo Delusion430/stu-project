@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 public class UserController {
 
-    // 模拟一个简单的内存存储，实际开发中会注入Service
-    // 为了演示，此处直接返回结果
-
     // 查询用户（GET）
     @GetMapping("/{id}")
     public Result<String> getUser(@PathVariable("id") Long id) {
