@@ -1,3 +1,5 @@
+/*
+
 package com.example212306164.helloserver.exception;
 
 import com.example212306164.helloserver.common.Result;
@@ -14,3 +16,5 @@ public class GlobalExceptionHandler {
         return Result.error(500, "服务器内部错误：" + e.getMessage());
     }
 }
+
+ */

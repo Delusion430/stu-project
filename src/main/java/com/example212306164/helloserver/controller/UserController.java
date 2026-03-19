@@ -1,37 +1,58 @@
 package com.example212306164.helloserver.controller;
 
 import com.example212306164.helloserver.common.Result;
-import com.example212306164.helloserver.entity.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
 
-    // 查询用户（GET）
+    // 查询用户（GET请求）
     @GetMapping("/{id}")
     public Result<String> getUser(@PathVariable("id") Long id) {
-        // 故意制造异常测试全局异常处理（例如除以0）
-        // int a = 1 / 0;
-        return Result.success("查询成功，正在返回 ID 为 " + id + " 的用户信息");
+        String data = "查询成功，正在返回 ID 为 " + id + " 的用户信息";
+        return Result.success(data);
     }
 
-    // 新增用户（POST）
+    // 创建用户（POST请求）- 注册
     @PostMapping
-    public Result<String> createUser(@RequestBody User user) {
-        // 模拟保存用户，返回成功信息
-        return Result.success("新增成功，接收到用户：" + user.getName() + "，年龄：" + user.getAge());
+    public Result<String> createUser(@RequestParam(required = false) String username,
+                                     @RequestParam(required = false) String password,
+                                     @RequestParam(required = false) String email,
+                                     @RequestBody(required = false) String jsonBody) {
+
+        String data;
+        if (username != null) {
+            // 表单方式
+            data = "用户创建成功（表单），用户名：" + username;
+        } else if (jsonBody != null && !jsonBody.isEmpty()) {
+            // JSON方式
+            data = "用户创建成功（JSON），数据：" + jsonBody;
+        } else {
+            data = "用户创建成功（无参数）";
+        }
+
+        return Result.success(data);
     }
 
-    // 全量更新用户（PUT）
+    // 登录接口
+    @PostMapping("/login")
+    public Result<String> login(@RequestParam String username, @RequestParam String password) {
+        String data = "登录成功，欢迎 " + username;
+        return Result.success(data);
+    }
+
+    // 更新用户（PUT请求）- 敏感操作
     @PutMapping("/{id}")
-    public Result<String> updateUser(@PathVariable("id") Long id, @RequestBody User user) {
-        return Result.success("更新成功，ID " + id + " 的用户已修改为：" + user.getName());
+    public Result<String> updateUser(@PathVariable("id") Long id, @RequestBody String userInfo) {
+        String data = "用户 ID " + id + " 更新成功";
+        return Result.success(data);
     }
 
-    // 删除用户（DELETE）
+    // 删除用户（DELETE请求）- 敏感操作
     @DeleteMapping("/{id}")
     public Result<String> deleteUser(@PathVariable("id") Long id) {
-        return Result.success("删除成功，已移除 ID 为 " + id + " 的用户");
+        String data = "用户 ID " + id + " 删除成功";
+        return Result.success(data);
     }
 }
