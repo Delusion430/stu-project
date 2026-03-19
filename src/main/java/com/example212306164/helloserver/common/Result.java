@@ -32,7 +32,7 @@ public class Result<T> {
         return new Result<>(code, msg, null);
     }
 
-    // Getter方法
+    // Getter 方法
     public int getCode() { return code; }
     public String getMsg() { return msg; }
     public T getData() { return data; }

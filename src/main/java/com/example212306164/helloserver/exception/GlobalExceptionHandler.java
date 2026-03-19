@@ -13,4 +13,5 @@ public class GlobalExceptionHandler {
         // 记录日志（此处省略）
         return Result.error(500, "服务器内部错误：" + e.getMessage());
     }
+
 }
