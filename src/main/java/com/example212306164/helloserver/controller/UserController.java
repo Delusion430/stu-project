@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 public class UserController {
 
+
     // 查询用户（GET）
     @GetMapping("/{id}")
     public Result<String> getUser(@PathVariable("id") Long id) {
