@@ -14,9 +14,4 @@ public class GlobalExceptionHandler {
         return Result.error(500, "服务器内部错误：" + e.getMessage());
     }
 
-    // 可以添加更具体的异常处理方法，例如：
-    // @ExceptionHandler(ArithmeticException.class)
-    // public Result<String> handleArithmetic(ArithmeticException e) {
-    //     return Result.error(400, "算术异常：" + e.getMessage());
-    // }
 }
