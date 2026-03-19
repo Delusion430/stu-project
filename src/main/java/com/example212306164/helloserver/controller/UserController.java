@@ -12,7 +12,7 @@ public class UserController {
     @GetMapping("/{id}")
     public Result<String> getUser(@PathVariable("id") Long id) {
         // 故意制造异常测试全局异常处理（例如除以0）
-        // int a = 1 / 0;  // 取消注释可触发异常
+        // int a = 1 / 0;
         return Result.success("查询成功，正在返回 ID 为 " + id + " 的用户信息");
     }
 

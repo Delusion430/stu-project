@@ -1,6 +1,5 @@
 package com.example212306164.helloserver.entity;
 
-
 public class User {
     private Long id;
     private String name;
