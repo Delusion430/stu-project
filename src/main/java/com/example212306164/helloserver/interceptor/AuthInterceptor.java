@@ -13,6 +13,8 @@ public class AuthInterceptor implements HandlerInterceptor {
         String method = request.getMethod();
         String uri = request.getRequestURI();
 
+        System.out.println("拦截器执行 - 方法: " + method + ", URI: " + uri);  // 添加这行
+
         // 2. 手写细粒度放行规则
         boolean isCreateUser = "POST".equalsIgnoreCase(method) && "/api/users".equals(uri);
         boolean isGetUser = "GET".equalsIgnoreCase(method) && uri.startsWith("/api/users/");
