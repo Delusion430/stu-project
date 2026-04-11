@@ -9,6 +9,7 @@ import com.example212306164.helloserver.mapper.UserMapper;
 import com.example212306164.helloserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.UUID;
 
@@ -17,6 +18,18 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;   // 注入 UserMapper 替代 Map
+
+    @Override
+    public Result<Object> getUserPage(Integer pageNum, Integer pageSize) {
+        // 1. 创建分页对象（当前页码，每页条数）
+        Page<User> pageParam = new Page<>(pageNum, pageSize);
+
+        // 2. 执行分页查询（第二个参数为查询条件，null 表示无条件查全部）
+        Page<User> resultPage = userMapper.selectPage(pageParam, null);
+
+        // 3. 返回封装好的分页对象（包含 records、total、pages 等）
+        return Result.success(resultPage);
+    }
 
     @Override
     public Result<String> register(UserDTO userDTO) {

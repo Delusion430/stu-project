@@ -35,4 +35,12 @@ public class UserController {
         return Result.success("用户 ID " + id + " 删除成功");
     }
     // 其他敏感操作（如 PUT、DELETE）可沿用原有逻辑
+
+    @GetMapping("/page")
+    public Result<Object> getUserPage(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "5") Integer pageSize) {
+        return userService.getUserPage(pageNum, pageSize);
+    }
+
 }
