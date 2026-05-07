@@ -11,4 +11,9 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
-    # 改为你的密码
+
+# JWT 配置
+security:
+  jwt:
+    secret: demo-jwt-secret-key-for-spring-security-2026
+    expiration-millis: 7200000

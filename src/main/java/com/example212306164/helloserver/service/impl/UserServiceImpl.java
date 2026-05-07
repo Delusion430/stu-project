@@ -15,6 +15,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import com.example212306164.helloserver.security.JwtUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +41,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     // ─── 分页查询 ────────────────────────────────────────────────────────────────
 
@@ -98,9 +102,9 @@ public class UserServiceImpl implements UserService {
             return Result.error(ResultCode.PASSWORD_ERROR);
         }
 
-        // 4. 生成模拟 Token（生产环境应替换为 JWT）
-        String token = java.util.UUID.randomUUID().toString().replace("-", "");
-        return Result.success("Bearer " + token);
+        // 4. 使用 JWT 生成 Token
+        String jwt = jwtUtil.generateToken(dbUser.getUsername());
+        return Result.success("Bearer " + jwt);
     }
 
     // ─── 查询单个用户 ─────────────────────────────────────────────────────────────
