@@ -11,6 +11,9 @@ public enum ResultCode {
     USER_HAS_EXISTED(4001, "该用户名已被注册"),
     USER_NOT_EXIST(4002, "该用户不存在"),
     PASSWORD_ERROR(4003, "账号或密码错误"),
+    PARAM_ERROR(4004, "参数错误"),
+    UPDATE_FAILED(4005, "更新失败"),
+    DELETE_FAILED(4006, "删除失败"),
 
     // 权限相关
     TOKEN_INVALID(401, "登录凭证已缺失或过期，请重新登录");
